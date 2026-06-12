@@ -123,6 +123,11 @@ export function DrawScreen() {
         <div className="relative flex min-h-96 w-full flex-col items-center justify-end pb-4">
           <div
             className="absolute bottom-52 left-1/2 z-10 -translate-x-1/2"
+            style={{
+              touchAction: "none",
+              WebkitTouchCallout: "none",
+              userSelect: "none",
+            }}
             {...(paperVisible ? gesture.handlers : {})}
             tabIndex={paperVisible ? 0 : -1}
             role={paperVisible ? "button" : undefined}

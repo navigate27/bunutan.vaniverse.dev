@@ -143,7 +143,8 @@ export function usePaperGesture({
 
   const onPointerDown = useCallback(
     (e: React.PointerEvent) => {
-      if (!enabled) return;
+      if (!enabled || e.button !== 0) return;
+      e.preventDefault();
       e.currentTarget.setPointerCapture(e.pointerId);
       startX.current = e.clientX;
       startY.current = e.clientY;
@@ -159,6 +160,8 @@ export function usePaperGesture({
   const onPointerMove = useCallback(
     (e: React.PointerEvent) => {
       if (!enabled || swipedRef.current) return;
+      if (!e.currentTarget.hasPointerCapture(e.pointerId)) return;
+
       const dx = e.clientX - startX.current;
       const dy = e.clientY - startY.current;
 
@@ -241,6 +244,10 @@ export function usePaperGesture({
     [endHold]
   );
 
+  const onContextMenu = useCallback((e: React.MouseEvent) => {
+    e.preventDefault();
+  }, []);
+
   return {
     dragX,
     holdProgress,
@@ -250,6 +257,7 @@ export function usePaperGesture({
       onPointerMove,
       onPointerUp,
       onPointerCancel,
+      onContextMenu,
       onKeyDown,
       onKeyUp,
     },

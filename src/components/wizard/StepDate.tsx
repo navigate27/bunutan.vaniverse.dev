@@ -1,7 +1,7 @@
 "use client";
 
 import { Button } from "@/components/ui/Button";
-import { Input } from "@/components/ui/Input";
+import { DatePicker } from "@/components/ui/DatePicker";
 import { WizardShell } from "./WizardShell";
 import { useBunutan } from "@/context/BunutanProvider";
 
@@ -30,13 +30,12 @@ export function StepDate({ step, onNext, onBack }: StepDateProps) {
         </div>
       }
     >
-      <Input
+      <DatePicker
         id="event-date"
         label="Event date"
-        type="date"
         value={state.event.date ?? ""}
-        onChange={(e) =>
-          dispatch({ type: "UPDATE_EVENT", patch: { date: e.target.value } })
+        onChange={(date) =>
+          dispatch({ type: "UPDATE_EVENT", patch: { date } })
         }
       />
     </WizardShell>

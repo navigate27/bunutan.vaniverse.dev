@@ -14,7 +14,7 @@ export const RELEASE_FULL_MS = 275;
 export const RELEASE_FRAME_MS = 55;
 
 /** Visual scale per frame — snaps to discrete sizes (% of full uncrumpled) */
-export const FRAME_SCALES = [0.5, 0.6, 0.7, 0.8, 1] as const;
+export const FRAME_SCALES = [0.5, 0.6, 0.75, 0.9, 1] as const;
 
 /** Subtle tilt per frame while holding */
 export const FRAME_TILTS = [-8, -7, -6, -5, -4] as const;
